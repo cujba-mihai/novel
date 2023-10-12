@@ -14,19 +14,33 @@ import {
 import * as Popover from "@radix-ui/react-popover";
 import { Dispatch, FC, SetStateAction } from "react";
 import { BubbleMenuItem } from ".";
+import { CommentIcon } from "../plugins/CommentIcon";
+
 
 interface NodeSelectorProps {
   editor: Editor;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setComment: () => void;
 }
 
 export const NodeSelector: FC<NodeSelectorProps> = ({
   editor,
   isOpen,
   setIsOpen,
+  setComment
 }) => {
+
+
   const items: BubbleMenuItem[] = [
+    {
+      name: 'Add Comment',
+      icon: CommentIcon,
+      command() {
+        setComment()
+      },
+      isActive: () => true
+    },
     {
       name: "Text",
       icon: TextIcon,

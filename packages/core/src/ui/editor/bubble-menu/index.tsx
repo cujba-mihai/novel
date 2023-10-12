@@ -19,7 +19,7 @@ export interface BubbleMenuItem {
   icon: typeof BoldIcon;
 }
 
-type EditorBubbleMenuProps = Omit<BubbleMenuProps, "children">;
+type EditorBubbleMenuProps = Omit<BubbleMenuProps, "children"> & {  setComment: () => void; };
 
 export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
   const items: BubbleMenuItem[] = [
@@ -89,8 +89,12 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
       {...bubbleMenuProps}
       className="novel-flex novel-w-fit novel-divide-x novel-divide-stone-200 novel-rounded novel-border novel-border-stone-200 novel-bg-white novel-shadow-xl"
     >
-      <NodeSelector
+      {
+        props.editor && (
+          <>
+          <NodeSelector
         editor={props.editor}
+        setComment={props.setComment}
         isOpen={isNodeSelectorOpen}
         setIsOpen={() => {
           setIsNodeSelectorOpen(!isNodeSelectorOpen);
@@ -107,6 +111,9 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
           setIsNodeSelectorOpen(false);
         }}
       />
+          </>
+        )
+      }
       <div className="novel-flex">
         {items.map((item, index) => (
           <button
@@ -123,7 +130,7 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
           </button>
         ))}
       </div>
-      <ColorSelector
+      {props.editor && (<ColorSelector
         editor={props.editor}
         isOpen={isColorSelectorOpen}
         setIsOpen={() => {
@@ -131,7 +138,7 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
           setIsNodeSelectorOpen(false);
           setIsLinkSelectorOpen(false);
         }}
-      />
+      />)}
     </BubbleMenu>
   );
 };
