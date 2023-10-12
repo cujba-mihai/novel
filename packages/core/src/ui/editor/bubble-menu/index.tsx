@@ -116,9 +116,9 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
         )
       }
       <div className="novel-flex">
-        {items.map((item, index) => (
+        {items.map((item) => (
           <button
-            key={index}
+            key={item.name}
             onClick={item.command}
             className="novel-p-2 novel-text-stone-600 hover:novel-bg-stone-100 active:novel-bg-stone-200"
             type="button"

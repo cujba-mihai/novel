@@ -127,9 +127,9 @@ export const NodeSelector: FC<NodeSelectorProps> = ({
           align="start"
           className="novel-z-[99999] novel-my-1 novel-flex novel-max-h-80 novel-w-48 novel-flex-col novel-overflow-hidden novel-overflow-y-auto novel-rounded novel-border novel-border-stone-200 novel-bg-white novel-p-1 novel-shadow-xl novel-animate-in novel-fade-in novel-slide-in-from-top-1"
         >
-          {items.map((item, index) => (
+          {items.map((item) => (
             <button
-              key={index}
+              key={item.name}
               onClick={() => {
                 item.command();
                 setIsOpen(false);
